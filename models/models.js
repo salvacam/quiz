@@ -60,6 +60,6 @@ sequelize.sync().then(function(){
 						  respuesta: 'Lisboa'
 						})
 			.then(function(){console.log('Base de datos inicializada')});
-		}	
+		};	
 	});
 }); 

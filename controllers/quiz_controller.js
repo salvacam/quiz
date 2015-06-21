@@ -19,7 +19,7 @@ exports.index = function(req, res) {
 	models.Quiz.findAll().then(
 		function (quizes) {	
 	//models.Quiz.find(req.params.quizId).then(function (quiz) {	
-			res.render('quizes/index.ejs', {quizes: quizes});	
+			res.render('quizes/index', {quizes: quizes});	
 		}
 	).catch(function(error){next(error);});
 };
@@ -38,7 +38,7 @@ exports.answer = function(req, res) {
 	if (req.query.respuesta === req.quiz.respuesta) {
 		resultado = "Correcto";
 	}
-	res.render('quizes/answer', {quiz: quiz, respuesta: resultado});
+	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado});
 /*
 	models.Quiz.find(req.params.quizId).then(function (quiz) {	
 		if (req.query.respuesta === quiz.respuesta) {
