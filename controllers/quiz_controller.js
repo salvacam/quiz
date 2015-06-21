@@ -3,7 +3,7 @@ var models = require('../models/models.js');
 //GET /quizes/question
 exports.load = function(req, res, next, quizId) {
 	//models.Quiz.findAll().then(function (quiz) {	
-	models.Quiz.find(quizId).then(
+	models.Quiz.findById(quizId).then(
 		function (quiz) {	
 			if (quiz) {
 				req.quiz = quiz;
