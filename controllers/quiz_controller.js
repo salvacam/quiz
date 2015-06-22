@@ -45,6 +45,7 @@ exports.search = function(req, res) {
 	if(req.query.search) {
 		console.log(req.query.search);
 		var filtro  = (req.query.search || '').replace(/ /g, "%");
+		console.log(filtro);
 		models.Quiz.findAll({where:["pregunta like ?", '%'+filtro+'%'],order:'pregunta ASC'}).then(function(quizes){
 		console.log(quizes);
 
@@ -52,8 +53,10 @@ exports.search = function(req, res) {
 		}).catch(function(error) { next(error);});
 
 	} else {
-		models.Quiz.findAll().then(function(quizes){
-			res.render('quizes/search', {quizes: quizes});
-		}).catch(function(error) { next(error);});
+		models.Quiz.findAll().then(
+			function (quizes) {	
+				res.render('quizes/search', {quizes: quizes});	
+			}
+		).catch(function(error){next(error);});
 	}
 };
