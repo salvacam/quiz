@@ -44,7 +44,7 @@ exports.answer = function(req, res) {
 exports.search = function(req, res) {
 	if(req.query.search) {
 		console.log(req.query.search);
-		var filtro  = (req.query.search || '').replace(/\s/gi, "%");
+		var filtro  = (req.query.search || '').replace(/ /g, "%");
 		models.Quiz.findAll({where:["pregunta like ?", '%'+filtro+'%'],order:'pregunta ASC'}).then(function(quizes){
 		console.log(quizes);
 
