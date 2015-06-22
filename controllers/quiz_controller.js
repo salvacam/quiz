@@ -43,6 +43,7 @@ exports.answer = function(req, res) {
 
 exports.search = function(req, res) {
 	if(req.query.search) {
+		console.log(req.query.search);
 		var filtro  = (req.query.search || '').replace(" ", "%");
 		models.Quiz.findAll({where:["pregunta like ?", '%'+filtro+'%'],order:'pregunta ASC'}).then(function(quizes){
 			res.render('quizes/index', {quizes: quizes});
