@@ -2,7 +2,19 @@ var models = require('../models/models.js');
 
 //GET /quizes/question
 exports.load = function(req, res, next, quizId) {
-	models.Quiz.findById(quizId).then(
+	//models.Quiz.findById(quizId).then(
+		models.Quiz.find({
+			where: { id: Number(quizId) },
+			include: [{model: models.Comment }]
+		}). then (function(quiz) {
+			if (quiz) {
+				req.quiz = quiz;
+				next();
+			} else {
+				next(new Error('No existe quizId= ' + quizId));
+			}		
+		}).catch(function(error){next(error);});
+/*
 		function (quiz) {	
 			if (quiz) {
 				req.quiz = quiz;
@@ -12,6 +24,7 @@ exports.load = function(req, res, next, quizId) {
 			}
 		}
 	).catch(function(error){next(error);});
+*/
 };
 
 exports.index = function(req, res) {
