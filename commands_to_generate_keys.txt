@@ -2,4 +2,4 @@ mkdir certs
 cd certs
 openssl genrsa -out quiz-salva-key.pem 2048
 openssl req -new -sha256 -key quiz-salva-key.pem -out quiz-salva-csr.pem
-openssl x509 -req -in quiz-salva-csr.pem -signkey quiz-salva-key.pem -out quizsalva-cert.pem
+openssl x509 -req -in quiz-salva-csr.pem -signkey quiz-salva-key.pem -out quiz-salva-cert.pem
